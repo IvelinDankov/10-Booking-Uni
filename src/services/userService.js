@@ -41,4 +41,14 @@ export default {
 
     return token;
   },
+
+  getOne(id) {
+    return User.findById(id).populate("bookedHotels");
+  },
+
+  bookedHotels(userId, hotelId) {
+    return User.findByIdAndUpdate(userId, {
+      $push: { bookedHotels: hotelId },
+    });
+  },
 };

@@ -56,4 +56,18 @@ userController.get("/logout", authMiddleware.auth, (req, res) => {
   res.redirect("/");
 });
 
+userController.get("/profile", authMiddleware.isAuth, async (req, res) => {
+  const userId = req.user.id;
+  const user = await userService.getOne(userId);
+
+  try {
+    const bookedHotels = user.bookedHotels;
+
+    res.render("user/profile", { bookedHotels });
+  } catch (err) {
+    const error = errorMsg(err);
+    res.render("user/profile", { bookedHotels, error });
+  }
+});
+
 export default userController;

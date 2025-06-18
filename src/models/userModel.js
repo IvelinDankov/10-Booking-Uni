@@ -12,11 +12,19 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Email is required!"],
     minLength: [10, "Must be at least 10 characters long"],
+    validate: [
+      /^[A-Za-z0-9]$/,
+      "should consist only english letters and digits",
+    ],
   },
   password: {
     type: String,
     required: [true, "Password is required!"],
-    minLength: [4, "Password must be at least 4 charachers."],
+    minLength: [5, "Password must be at least 5 charachers."],
+    validate: [
+      /^[A-Za-z0-9]*$/,
+      "should consist only english letters and digits",
+    ],
   },
   bookedHotels: [
     {
