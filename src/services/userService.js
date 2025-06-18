@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { jwtSecret } from "../utils/userUtils.js";
 
 export default {
-  async register(username, email, password) {
+  async register(email, username, password) {
     const user = await User.findOne({ email });
 
     if (user) {
@@ -18,17 +18,17 @@ export default {
     });
   },
 
-  async login(email, password) {
-    const user = await User.findOne({ email });
+  async login(username, password) {
+    const user = await User.findOne({ username });
 
     if (!user) {
-      throw new Error("User or email are not Valid");
+      throw new Error("User or username are not Valid");
     }
 
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-      throw new Error("User or email are not Valid");
+      throw new Error("User or usrename are not Valid");
     }
 
     const payload = {
