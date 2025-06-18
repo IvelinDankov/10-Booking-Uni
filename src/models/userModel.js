@@ -18,6 +18,18 @@ const userSchema = new Schema({
     required: [true, "Password is required!"],
     minLength: [4, "Password must be at least 4 charachers."],
   },
+  bookedHotels: [
+    {
+      type: Types.ObjectId,
+      ref: "Hotel",
+    },
+  ],
+  offeredHotels: [
+    {
+      type: Types.ObjectId,
+      ref: "Hotel",
+    },
+  ],
 });
 
 userSchema.pre("save", async function () {
