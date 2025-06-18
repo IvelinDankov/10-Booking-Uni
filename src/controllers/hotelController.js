@@ -22,4 +22,11 @@ hotelController.post("/add", async (req, res) => {
   }
 });
 
+hotelController.get("/:hotelId/details", async (req, res) => {
+  const hotelId = req.params.hotelId;
+
+  const hotel = await hotelService.getOne(hotelId);
+  res.render("hotel/details", { hotel });
+});
+
 export default hotelController;

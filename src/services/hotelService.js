@@ -7,4 +7,7 @@ export default {
   getAllHotels() {
     return Hotel.find();
   },
+  getOne(id) {
+    return Hotel.findById(id);
+  },
 };
