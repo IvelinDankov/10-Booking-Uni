@@ -10,4 +10,20 @@ export default {
   getOne(id) {
     return Hotel.findById(id);
   },
+  book(hotelId, userId) {
+    return Hotel.findByIdAndUpdate(
+      hotelId,
+      {
+        $inc: { freeRooms: -1 },
+        $push: { usersBooked: userId },
+      },
+      { new: true }
+    );
+  },
+  update(id, data) {
+    return Hotel.findByIdAndUpdate(id, data);
+  },
+  remove(id) {
+    return Hotel.findByIdAndDelete(id);
+  },
 };

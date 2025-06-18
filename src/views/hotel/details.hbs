@@ -13,12 +13,24 @@
       </div>
       <p><span>Free rooms: {{hotel.freeRooms}}</span> </p>
       {{! FIXME: }}
-      <p><span class="green">You already have booked a room</span> </p>
+      {{#if user}}
 
-      <a href="/hotels/{{hotel.id}}/book" class="book">Book</a>
+        {{#if isOwner}}
       <a href="/hotels/{{hotel.id}}/edit" class="edit">Edit</a>
       <a href="/hotels/{{hotel.id}}/delete" class="remove">Delete</a>
     </div>
+
+        {{else}}
+
+        {{#if booked}}
+      <p><span class="green">You already have booked a room</span> </p>
+        {{else}}
+      <a href="/hotels/{{hotel.id}}/book" class="book">Book</a>
+
+        {{/if}}
+
+        {{/if}}
+    {{/if}}
 
   </div>
 </section>
